@@ -1,39 +1,53 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContactsCrud } from "../../context/ContactCrudContext";
 
-class AddContact extends React.Component {
-    state = {
-        name: "",
-        email: ""
+const AddContact = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+
+  const { addContactHandler } = useContactsCrud();
+  const navigate = useNavigate();
+
+  const add = (e) => {
+    e.preventDefault();
+    if (name === "" || email === "") {
+      alert("ALl the fields are mandatory!");
+      return;
     }
-    addInput = (e) => {
-        e.preventDefault();
-        if (this.state.name === "" || this.state.email === "") {
-            alert("All the fields are mandatory");
-            return
-        }
-        this.props.addContactHandler(this.state);
-        this.setState({ name: "", email: "" });
-    }
-    render() {
-        return (
-            <div className='ui main'>
-                <h2>add contact </h2>
-                <form className='ui form' onSubmit={this.addInput}>
-                    <div className="field">
-                        <label> Name</label>
-                        <input type="text" name='name' onChange={(e) => { this.setState({ name: e.target.value }) }} placeholder='Name' />
-                    </div>
+    addContactHandler({ name, email });
+    setEmail("");
+    setName("");
+    navigate("/");
+  };
+  return (
+    <div className="ui main">
+      <h2>Add Contact</h2>
+      <form className="ui form" onSubmit={add}>
+        <div className="field">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="field">
+          <label>Email</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <button className="ui button blue">Add</button>
+      </form>
+    </div>
+  );
+};
 
-                    <div className="field">
-                        <label> Email</label>
-                        <input type="text" name='email' onChange={(e) => { this.setState({ email: e.target.value }) }} placeholder='email@gmail.Com' />
-                    </div>
-                    <button className='ui button blue'>Add contact</button>
-
-                </form>
-            </div>
-        )
-
-    }
-}
-export default AddContact
+export default AddContact;

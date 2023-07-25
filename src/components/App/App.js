@@ -1,36 +1,30 @@
-import React, { useState, useEffect } from "react";
-import "../App/App.css";
-import Header from "../Header/Header";
-import AddContact from "../AddContact/AddContact";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "../Header/Header.js";
+import AddContact from "../AddContact/AddContact.js";
 import ContactList from "../ContactList/ContactList";
+import ContactDetail from "../ContactDetails/ContactDetails";
+import EditContact from "../EditContact/EditContact";
+import { ContactsCrudContextProvider } from "../../context/ContactCrudContext";
 
 function App() {
-  const LOCAL_STORAGE_KEY = "contacts";
-  const [contacts, setContacts] = useState([]);
-  const addContactHandler = (contact) => {
-    console.log(contact);
-    setContacts([...contacts, contact]);
-  };
-  // Save contacts to local storage whenever it changes
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
-  }, [contacts]);
-
-  // Retrieve contacts from local storage on initial mount
-  useEffect(() => {
-    const retrievedContacts = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_KEY)
-    );
-    if (retrievedContacts) {
-      setContacts(retrievedContacts);
-    }
-  }, []);
   return (
-    <>
-      <Header />
-      <AddContact addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} />
-    </>
+    <div className="ui container">
+      <Router>
+        <Header />
+        <ContactsCrudContextProvider>
+          <Routes>
+            <Route path="/" exact element={<ContactList />} />
+            <Route path="/add" element={<AddContact />} />
+
+            <Route path="/edit" element={<EditContact />} />
+
+            <Route path="/contact/:id" element={<ContactDetail />} />
+          </Routes>
+        </ContactsCrudContextProvider>
+      </Router>
+    </div>
   );
 }
 
