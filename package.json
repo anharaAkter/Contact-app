@@ -1,7 +1,7 @@
 {
   "name": "contact-app",
   "version": "0.1.0",
-  "homepage": "https://<your_username>.github.io/<repo_name>",
+  "homepage": "https://anharaAkter.github.io/contact-app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
