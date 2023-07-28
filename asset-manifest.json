@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/contact-app/static/css/main.abd64e84.css",
+    "main.js": "/contact-app/static/js/main.1ff0b89f.js",
+    "static/js/787.a9a1a97d.chunk.js": "/contact-app/static/js/787.a9a1a97d.chunk.js",
+    "index.html": "/contact-app/index.html",
+    "main.abd64e84.css.map": "/contact-app/static/css/main.abd64e84.css.map",
+    "main.1ff0b89f.js.map": "/contact-app/static/js/main.1ff0b89f.js.map",
+    "787.a9a1a97d.chunk.js.map": "/contact-app/static/js/787.a9a1a97d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abd64e84.css",
+    "static/js/main.1ff0b89f.js"
+  ]
+}
