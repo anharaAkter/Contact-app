@@ -1,18 +1,15 @@
-import React from 'react'
-
-
+import React from "react";
 
 //functional component
 const Header = () => {
-    return (
-        <div className='ui fixed menu'>
-            <div className='ui container center'>
-                <h2> Contact Manager</h2>
-
-            </div>
-
+  return (
+    <div className="ui  menu">
+      <div className="ui container">
+        <div className="ui container center">
+          <h2>Contact Manager</h2>
         </div>
-    )
-
-}
-export default Header 
+      </div>
+    </div>
+  );
+};
+export default Header;
